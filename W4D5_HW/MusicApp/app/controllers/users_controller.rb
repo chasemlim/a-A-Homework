@@ -7,7 +7,7 @@ class UsersController < ApplicationController
       log_in_user!(@user)
       redirect_to user_url(@user)
     else
-      render json: @user.errors.full_messages, status: 422
+      flash[:errors] = "422 Error"
     end
   end
 
