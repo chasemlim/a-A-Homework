@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MusicApp</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <link href="https://fonts.googleapis.com/css?family=Allerta+Stencil" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Kumar+One+Outline" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="https://spliceblob.splice.com/lessons-of-kshmr/styles.2055e01b11f9a8418355.css">
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <div class="header">
+    <h1 class="logo">MusicApp</h1>
+
+    <% if current_user.nil? %>
+      <a class="headerbutton" href="<%= new_session_url %>">Sign in</a>
+      <a class="headerbutton" href="<%= new_user_url %>">Sign up</a>
+    <% else %>
+      <!-- <h2 class="header"><%#= current_user.email %></h2> -->
+      <form action="<%= session_url %>" method="post">
+        <%= auth_token %>
+        <input type="hidden" name="_method" value="delete">
+        <input class="headerbutton" type="submit" value="Logout">
+      </form>
+    <% end %>
+
+
+    <div class="header-right">
+      <a class="active" href="Songs">Songs</a>
+      <a href="artists path">Artists</a>
+      <a href="albums path">Albums</a>
+    </div>
+  </div>
+
+  <body>
+
+    <%= yield %>
+  </body>
+</html>
